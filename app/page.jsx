@@ -1,3 +1,4 @@
+import Counter from './components/Counter';
 export  default  async function Home( ){
 
     const data =await fetch('https://jsonplaceholder.typicode.com/posts')
@@ -13,6 +14,7 @@ export  default  async function Home( ){
             </li> 
         ))}
       </ul>
+      <Counter />
        </div>
     );
 }
