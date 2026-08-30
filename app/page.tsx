@@ -1,14 +1,8 @@
-export default async function Home(){
-    const res= await fetch('https://jsonplaceholder.typicode.com/posts',{
-        cache:'no-store'
-    })
-    const data = await res.json()
-    console.log(data)
-    return(
+export default function Home(){
+  return(
         <div>
-            <h1>Welcome to home page(Dynamic Render Page)</h1>
-            <pre>{JSON.stringify(data,null,2)}</pre>
-            
+            <h1>Welcome to home page</h1>
+            <p>This is the main landing page of application</p>
         </div>
     );
 } 
