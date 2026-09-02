@@ -18,7 +18,7 @@ export async function POST(request: Request) {
         id: posts.length + 1,
         title: body.title,
         content: body.content
-    }
+    };
     posts.push(newPost);
     return NextResponse.json({
         message: "Post created successfully",
