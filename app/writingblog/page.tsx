@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {getPostData} from "@/lib/post";
+import {getPostData} from "@/lib 1/post";
 
 export default function WritingBlogPage() {
     const posts = getPostData();

@@ -1,4 +1,4 @@
-import {getPostDataBySlug} from "@/lib/post";
+import {getPostDataBySlug} from "@/lib 1/post";
 import type{ Metadata} from 'next';
 
 type Props = {

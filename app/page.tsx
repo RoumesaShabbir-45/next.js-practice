@@ -30,14 +30,35 @@ export default function HomePage() {
         setContent("");
         getPosts();
     }
-      useEffect(() => {
+
+    async function patchPost() {
+        const response = await fetch(`/api/posts/${title}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title, content }),
+        });
+        setTitle("");
+        setContent("");
+        getPosts();
+    }
+
+    useEffect(() => {
         getPosts();
     }, []);
      
     return (
         <div style={{ padding:20}}>
-            <h1>GET AND POST API</h1>
+            <h1>GET PATCH AND POST API</h1>
             <button onClick={getPosts}> GET POSTS</button>
+
+            <input 
+            placeholder="id (ForPATCH)"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            />
+
 
              <div style={{ marginTop:20 }}></div>
              <input
@@ -54,6 +75,8 @@ export default function HomePage() {
              <br />
              <div style ={{ marginTop:10 }}>
                 <button onClick={createPost}>CREATE POST</button>
+                
+                <button onClick={patchPost}>PATCH</button>
              </div>
              <pre> {JSON.stringify(posts,null,2)}</pre>
         </div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import{ products} from "@/lib/product";
+import{ products} from "@/lib 1/product";
 
 type Product = {
     searchParams: Promise<{
