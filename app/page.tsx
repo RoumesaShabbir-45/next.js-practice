@@ -74,7 +74,7 @@ export default function HomePage() {
             <br />
             <div style={{ marginTop: 20 }}></div>
             <input
-                placeholder="id (For PATCH and PUT)"
+                placeholder="id (For PATCH and PUT)"gi
                 value={id}
                 onChange={(e) => setId(e.target.value)}
             />
