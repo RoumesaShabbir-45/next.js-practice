@@ -49,3 +49,43 @@ if (body.content !== undefined) {
         { status: 200}
     );
 }
+
+//PUT API based on id
+export async function PUT(
+    request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+    const { id } = await params;
+    const body = await request.json();
+    const postId = Number(id);
+
+    const postIndex = posts.findIndex((post) => post.id === postId);
+
+    if (postIndex === -1) {
+        return NextResponse.json(
+            { message: "Post not found" },
+            { status: 404 }
+        );
+    }
+
+    if (!body.title || !body.content) 
+         {
+        return NextResponse.json(
+            { message: "Title and content are required" },
+            { status: 400 }
+        );
+    }
+    posts[postIndex]=
+    {
+        id: postId,
+        title: body.title,
+        content: body.content,
+    };
+    return NextResponse.json({
+        message: "Post updated successfully",
+        post: posts[postIndex],
+    },{
+        status: 200,
+    });
+}
+
