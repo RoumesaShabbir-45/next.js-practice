@@ -23,8 +23,13 @@ export default function LoginPage() {
         else {
             alert("Login failed");
     }
-    }
-
+   const data = await response.json();
+    if (data.token){
+        localStorage.setItem ("token", data.token);
+        router.push("/dashboard");
+    } else{
+        alert("Invalid credentials");
+    }}
     return (
         <div style={{ padding: 20 }}>
             <h1>Login</h1>
