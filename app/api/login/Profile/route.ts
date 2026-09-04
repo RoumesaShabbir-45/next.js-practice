@@ -15,7 +15,7 @@ export async function GET(request:Request)
         );
     }
     const token = authHeader.split("")[1];
-    
+
     try{
         const user = verifyToken(token);
         return NextResponse.json(
