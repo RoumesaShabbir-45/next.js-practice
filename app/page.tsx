@@ -61,6 +61,13 @@ export default function HomePage() {
         setContent("");
         getPosts();
     }
+    async function deletePost() {
+        const response = await fetch(`/api/posts/${id}`, {
+            method: "DELETE",
+        })
+        setId("");
+        getPosts();
+    }
 
     useEffect(() => {
         getPosts();
@@ -68,13 +75,13 @@ export default function HomePage() {
 
     return (
         <div style={{ padding: 20 }}>
-            <h1>GET PATCH AND POST API</h1>
+            <h1>GET PATCH DELETE AND POST API</h1>
             <button onClick={getPosts}> GET POSTS</button>
 
             <br />
             <div style={{ marginTop: 20 }}></div>
             <input
-                placeholder="id (For PATCH and PUT)"gi
+                placeholder="id (For PATCH ,PUT ,DELETE)"
                 value={id}
                 onChange={(e) => setId(e.target.value)}
             />
@@ -95,16 +102,10 @@ export default function HomePage() {
                 <button onClick={createPost}>POST</button>
                 <button onClick={patchPost}>PATCH</button>
                 <button onClick={putPost}>PUT</button>
+                <button onClick={deletePost}>DELETE</button>
             </div>
 
             <pre> {JSON.stringify(posts, null, 2)}</pre>
         </div>
     );
 }
-
-
-
-
-
-
-
