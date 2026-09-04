@@ -1,5 +1,5 @@
 import {NextResponse}from"next/server";
-import { posts } from "@/app/lib/post";
+import { posts } from "@/app/lib-old/post";
 
 export async function GET() {
     return NextResponse.json(posts);
