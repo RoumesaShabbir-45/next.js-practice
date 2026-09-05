@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { generateToken } from "@/lib/jwt";
 //post api
 export async function POST(request:Request) 
 {
@@ -6,17 +7,14 @@ export async function POST(request:Request)
 
     //demo credentials
 if (email === "admin@company.com" && password === "123456")
-{
- const response= NextResponse.json({
-         message: "Login successful" ,
-        });
+   {
+const token= generateToken({email}); 
 
-        response.cookies.set("auth","true",{
-             httpOnly:true,
-             path:"/",
- });
-return response;
-}
+return NextResponse.json({
+         message: "Login successful",
+         token,
+        });
+    }
         return NextResponse.json(
             { message: "Invalid credentials"},
              { status: 401 }

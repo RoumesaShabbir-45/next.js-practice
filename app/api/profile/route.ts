@@ -1,20 +1,18 @@
 import { NextResponse } from "next/server";
 import { verifyToken } from "@/lib/jwt";
-import { error } from "console";
 
 export async function GET(request:Request) 
 {
-    const authHeader = request.headers.get("Authorization");
+    const authHeader = request.headers.get("authorization");
+    console.log("Backend recieved header:", authHeader);
 
     if(!authHeader)
-    {
-        return NextResponse.json(
-
+    {        return NextResponse.json(
             { message : "unauthorize"},
             {status:401}
         );
     }
-    const token = authHeader.split("")[1];
+    const token = authHeader.split(" ")[1];
 
     try{
         const user = verifyToken(token);
@@ -24,7 +22,7 @@ export async function GET(request:Request)
                 user,
             });
     }
-    catch(error) {
+    catch (error) {
         return NextResponse.json(
            { message :"invalid token"},
            {status:401}
