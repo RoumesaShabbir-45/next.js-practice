@@ -1,11 +1,22 @@
 import {connectDB} from "@/lib/mongoose";
+import {NextResponse} from "next/server";
+import  User from "@/models/User";
 
-export async function GET() {
-    await connectDB();
-    console.log ("API call and DB connection")
+export async function POST(req) {
+        try{
+            await connectDB();
+            const body =await req.json();
+            const user= await User.create(body);
 
-    return Response.json({
-        message:"DB connection fine on terminal"
-    })
+            return NextResponse.json({
+                message:"user created successfully",
+                data:user
+            })
     
-}
+        } catch(err){
+            return NextResponse.json({
+                message:"Error creating user",
+                error:err.message
+            });
+        }
+    }
