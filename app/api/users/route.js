@@ -20,3 +20,22 @@ export async function POST(req) {
             });
         }
     }
+
+    export async function GET() {
+        try{
+            await connectDB();
+            const user= await User.find();
+
+            
+            return NextResponse.json({
+                message:"user fetch successfully",
+                data:user
+            })
+        }catch(err){
+            return NextResponse.json({
+                message:"Error creating user",
+                error:err.message
+            });
+        
+    }
+}
