@@ -1,12 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 
 
 export default function HomePage() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-
+     const [user, setuser] = useState([]);
+////Get data
+const fetchUser=async()=>{
+    const res = await fetch("/api/users");
+    const data =await res.json();
+    setuser(data.data)
+    console.log(data.data)
+}
+//load data
+useEffect(()=>{
+fetchUser();
+},[])
+     //data handle
     const handleSubmit= async(e)=>{e.preventDefault();
         try{
         const res = await fetch("/api/users",{
@@ -45,7 +57,12 @@ export default function HomePage() {
                 <button type="submit">Create User</button>
 
             </form>
-        </div>
-    );
-
-}
+            <hr />
+            <h2>User list</h2>{
+                user.map((user)=>
+                <div key={user._id}>{user.name}={user.email}</div>
+                 )}
+                 </div>
+                );
+            }
+    
