@@ -1,7 +1,7 @@
 import {connectDB} from "@/lib/mongoose";
 import {NextResponse} from "next/server";
 import  User from "@/models/User";
-
+//post api
 export async function POST(req) {
         try{
             await connectDB();
@@ -20,7 +20,7 @@ export async function POST(req) {
             });
         }
     }
-    
+    //Get api
     export async function GET() {
         try{
             await connectDB();
