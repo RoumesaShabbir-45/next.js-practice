@@ -1,5 +1,5 @@
 import { useEffect ,useState } from "react";
-
+import { useRouter } from "next/router";
 export default function Homepage(){
     const [user,setUsers]=useState();
 
@@ -9,6 +9,11 @@ export default function Homepage(){
         .then(data=> setUsers(data.user))
     },[])
 
+      const router = useRouter();
+    const GoToAbout = ()=>{
+        router.push("/about")
+    }
+
     return(
         <div>
             <h1>User Data</h1>
@@ -17,7 +22,9 @@ export default function Homepage(){
                     <p key={user.id}>{user.name}</p>
                 ))
             }
+            <div>
+            <button onClick={GoToAbout}>Go To About Page</button>
         </div>
-        
-    );
+        </div>
+    );  
 }
