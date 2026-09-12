@@ -1,6 +1,8 @@
 import { useEffect ,useState } from "react";
 import { useRouter } from "next/router";
-export default function Homepage(){
+import styles from "@/styles/Home.module.css";
+
+export default function Home(){
     const [user,setUsers]=useState();
 
     useEffect(() => {
@@ -16,14 +18,14 @@ export default function Homepage(){
 
     return(
         <div>
-            <h1>User Data</h1>
+            <h1 className={styles.title}>User Data</h1>
             {
                 user && user.map(user=>(
                     <p key={user.id}>{user.name}</p>
                 ))
             }
             <div>
-            <button onClick={GoToAbout}>Go To About Page</button>
+            <button className={styles.button}onClick={GoToAbout}>Go To About Page</button>
         </div>
         </div>
     );  
